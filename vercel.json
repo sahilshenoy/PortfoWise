@@ -1,16 +1,30 @@
 {
-    "version":2,
+    "version": 2,
     "builds": [
-        {
-            "src":"./index.py",
-            "use": "@vercel/python",
-            "config":{"runtime":"python3.8"}
+      {
+        "src": "app.py",
+        "use": "@vercel/python",
+        "config": {
+          "maxLambdaSize": "50mb"
         }
+      }
     ],
     "routes": [
-        {
-            "src":"/(.*)",
-            "dest":"/"
-        }
-    ]
-}
+      {
+        "src": "/(.*)",
+        "dest": "app.py"
+      }
+    ],
+    "env": {
+      "API_KEY": "API_KEY",
+      "API_SECRET": "API_SECRET",
+      "FLASK_ENV": "production"
+    },
+    "build": {
+      "env": {
+        "PIP_NO_BINARY": "cffi",
+        "PIP_VERSION": "23.0"
+      }
+    }
+  }
+  
