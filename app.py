@@ -187,5 +187,3 @@ def allocation_pie_chart():
     
     return send_file(img, mimetype='image/png')
 
-if __name__ == "__main__":
-    app.run(debug=True)
