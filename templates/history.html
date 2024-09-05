@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ symbol }} Historical Prices</title>
+  </head>
+  <body>
+    <h1>Historical Prices for {{ symbol }}</h1>
+    <table>
+      <tr>
+        <th>Date</th>
+        <th>Price</th>
+      </tr>
+      {% for price in history %}
+      <tr>
+        <td>{{ price.date }}</td>
+        <td>{{ price.price }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+  </body>
+</html>

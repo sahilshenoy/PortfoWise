@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Stock Insights</title>
+  </head>
+  <body>
+    <h1>Stock Insights for {{ symbol }}</h1>
+
+    <h3>Financial Metrics</h3>
+    <ul>
+      <li>P/E Ratio: {{ insights.financial_metrics['P/E Ratio'] }}</li>
+      <li>
+        Price/Book Ratio: {{ insights.financial_metrics['Price/Book Ratio'] }}
+      </li>
+      <li>
+        Dividend Yield: {{ insights.financial_metrics['Dividend Yield'] }}
+      </li>
+      <li>
+        Revenue Growth: {{ insights.financial_metrics['Revenue Growth'] }}
+      </li>
+      <li>
+        Earnings Growth: {{ insights.financial_metrics['Earnings Growth'] }}
+      </li>
+    </ul>
+
+    <h3>Historical Returns</h3>
+    <p>{{ insights.historical_returns }}%</p>
+
+    <h3>Prediction</h3>
+    <p>{{ insights.prediction }}</p>
+
+    <h3>Latest News</h3>
+    <ul>
+      {% for article in insights.news %}
+      <li><a href="{{ article.url }}">{{ article.title }}</a></li>
+      {% endfor %}
+    </ul>
+
+    <p><a href="/">Back to Portfolio</a></p>
+  </body>
+</html>

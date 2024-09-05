@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Stock Portfolio</title>
+</head>
+<body>
+    <h1>My Stock Portfolio</h1>
+
+    <!-- Display Total Portfolio Value -->
+    <h2>Total Portfolio Value: {{ total_value }}</h2>
+
+    <!-- Portfolio Performance Table -->
+    <h3>Portfolio Performance:</h3>
+    <table>
+        <tr>
+            <th>Symbol</th>
+            <th>Change (%)</th>
+        </tr>
+        {% for symbol, change in performance.items() %}
+        <tr>
+            <td>{{ symbol }}</td>
+            <td>{{ change }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Portfolio Holdings Table -->
+    <h3>Holdings:</h3>
+    <table>
+        <tr>
+            <th>Symbol</th>
+            <th>Quantity</th>
+            <th>Average Price</th>
+        </tr>
+        {% for stock in portfolio %}
+        <tr>
+            <td><a href="{{ url_for('historical_price', symbol=stock.symbol) }}">{{ stock.symbol }}</a></td>
+            <td>{{ stock.quantity }}</td>
+            <td>{{ stock.average_price }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+    <!-- Visualizations Section -->
+    <h3>Visualizations:</h3>
+    
+    <!-- Portfolio Allocation Pie Chart -->
+    <h5>Portfolio Allocation:</h5>
+    <img src="{{ url_for('allocation_pie_chart') }}" alt="Portfolio Allocation Pie Chart">
+
+    <ul>
+        <li><a href="{{ url_for('portfolio_value_over_time') }}">Portfolio Value Over Time</a></li>
+        <li><a href="{{ url_for('daily_performance') }}">Daily Portfolio Performance</a></li>
+        <li><a href="{{ url_for('efficient_frontier') }}">Efficient Frontier</a></li>
+        <li><a href="{{ url_for('risk_assessment') }}">Risk Assessment</a></li>
+        <li><a href="{{ url_for('rebalance') }}">Rebalance Portfolio</a></li>
+    </ul>
+
+    <!-- Insights -->
+    <h3>Get Insights for Any Stock:</h3>
+    <form action="{{ url_for('insights') }}" method="POST">
+        <label for="symbol">Enter Stock Symbol:</label>
+        <input type="text" id="symbol" name="symbol" placeholder="e.g., INFY, HDFCBANK, RELIANCE" required>
+        <button type="submit">Get Insights</button>
+    </form>
+</body>
+</html>
