@@ -1,5 +1,4 @@
 .env
-access_token.txt
 
 # Elastic Beanstalk Files
 .elasticbeanstalk/*
