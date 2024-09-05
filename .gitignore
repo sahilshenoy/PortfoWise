@@ -14,5 +14,3 @@ env/
 *.sqlite3
 *.db
 
-stock-env/
-temp/
